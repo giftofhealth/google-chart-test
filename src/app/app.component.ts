@@ -14,7 +14,7 @@ declare var google: any;
 export class AppComponent {
     public selectEvent: ChartSelectEvent;
     title = 'google-chart-test';
-    chart_ready = false;
+
     public pieChart: GoogleChartInterface = {
 	chartType: 'PieChart',
 	dataTable: [
@@ -29,7 +29,7 @@ export class AppComponent {
 	options: {'title': 'Tasks'},
     };
 
-    public tableChart =  {
+    public tableChart : GoogleChartInterface =  {
 	chartType: 'Table',
 	dataTable: [
 	    ['Department', 'Revenues', 'Another column', 'ColorFormat'],
@@ -45,7 +45,7 @@ export class AppComponent {
 		columns: [1, 2],
 		type: 'NumberFormat',
 		options: {
-		    prefix: '&euro;', negativeColor: 'red', negativeParens: true
+		    //prefix: '&euro;', negativeColor: 'red', negativeParens: true
 		}
 	    },
 	    {
@@ -53,41 +53,42 @@ export class AppComponent {
 		type: 'ColorFormat',
 		options: {
 		    ranges: [
-			{from: 100, to: 900, fromBgColor: 'green', toBgColor: 'yellow'}
+			{color: 'red', from: 100, to: 900, fromBgColor: 'green', toBgColor: 'yellow'}
 		    ]
 		}
 	    }
 	],
 	options: {title: 'Countries', allowHtml: true}
     };
-  public ready(event: ChartReadyEvent) {
-    console.log(event.message);
-  }
 
-  public error(event: ChartErrorEvent) {
-    console.error("Error: " + event);
-  }
+    public ready(event: ChartReadyEvent) {
+	console.log(event.message);
+    }
 
-  public select(event: ChartSelectEvent) {
-      this.selectEvent = event;
-  }
+    public error(event: ChartErrorEvent) {
+	console.error("Error: " + event);
+    }
 
-  public mouseOver(event: ChartMouseOverEvent) {
-    console.log('ChartMouseOverEvent');
-    console.log('bb: ' + JSON.stringify(event.boundingBox));
-    console.log('pos: ' + JSON.stringify(event.position));
-    console.log('type: ' + JSON.stringify(event.columnType));
-    console.log('label: ' + JSON.stringify(event.columnLabel));
-    console.log('value: ' + JSON.stringify(event.value));
-  }
+    public select(event: ChartSelectEvent) {
+	this.selectEvent = event;
+    }
 
-  public mouseOut(event: ChartMouseOutEvent) {
-    console.log('ChartMouseOutEvent');
-    console.log('bb: ' + JSON.stringify(event.boundingBox));
-    console.log('pos: ' + JSON.stringify(event.position));
-    console.log('type: ' + JSON.stringify(event.columnType));
-    console.log('label: ' + JSON.stringify(event.columnLabel));
-    console.log('value: ' + JSON.stringify(event.value));
-  }
+    public mouseOver(event: ChartMouseOverEvent) {
+	console.log('ChartMouseOverEvent');
+	console.log('bb: ' + JSON.stringify(event.boundingBox));
+	console.log('pos: ' + JSON.stringify(event.position));
+	console.log('type: ' + JSON.stringify(event.columnType));
+	console.log('label: ' + JSON.stringify(event.columnLabel));
+	console.log('value: ' + JSON.stringify(event.value));
+    }
+
+    public mouseOut(event: ChartMouseOutEvent) {
+	console.log('ChartMouseOutEvent');
+	console.log('bb: ' + JSON.stringify(event.boundingBox));
+	console.log('pos: ' + JSON.stringify(event.position));
+	console.log('type: ' + JSON.stringify(event.columnType));
+	console.log('label: ' + JSON.stringify(event.columnLabel));
+	console.log('value: ' + JSON.stringify(event.value));
+    }
 
 }
